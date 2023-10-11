@@ -27,10 +27,12 @@ jobs:
           password: ${{ secrets.ACR_PASSWORD }}
 
       - name: Build Docker image
-        run: |
-          docker build -t ${{ matrix.service }}:latest -f ./${{ matrix.service }}/Dockerfile .
-          docker tag ${{ matrix.service }}:latest ${{ secrets.ACR_LOGIN_URL }}/${{ matrix.service }}:latest
-          docker push ${{ secrets.ACR_LOGIN_URL }}/${{ matrix.service }}:latest
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          tags: ${{ matrix.service }}:latest
+          push: true
+          file: ${{ matrix.service }}/Dockerfile
 
       - uses: Azure/login@v1
         with:
