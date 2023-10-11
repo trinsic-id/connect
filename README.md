@@ -1,2 +1,2 @@
-# connect
-Trinsic Connect Demo/Samples
+# connect-demo
+Demo of Trinsic Connect
