@@ -4,14 +4,14 @@
   "main": "src/main.tsx",
   "scripts": {
     "build-pocketrides": "tsc && RELYING_PARTY='pocketrides' vite build",
-    "build-pairbnb": "tsc && RELYING_PARTY='pairbnb' vite build",
-    "build": "npm run build-pocketrides && npm run build-pairbnb",
+    "build-pearbnb": "tsc && RELYING_PARTY='pearbnb' vite build",
+    "build": "npm run build-pocketrides && npm run build-pearbnb",
     "build:post": "sh ./post-build.sh",
     "build:eslint": "npx eslint src",
     "build:prettier": "prettier src --write",
     "find-unimported": "npx unimported",
     "start-pocketrides": "RELYING_PARTY='pocketrides' vite --host",
-    "start-pairbnb": "RELYING_PARTY='pairbnb' vite --host"
+    "start-pearbnb": "RELYING_PARTY='pearbnb' vite --host"
   },
   "dependencies": {
     "@trinsic/trinsic": "^1.11.3-pre.14",

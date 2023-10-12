@@ -2,7 +2,7 @@ import { useMemo } from "react";
 
 export enum RelyingParty {
   pocketrides = "pocketrides",
-  pairbnb = "pairbnb",
+  pearbnb = "pearbnb",
 }
 
 export const useWhichRelyingParty = () => {
@@ -17,6 +17,6 @@ export const useWhichRelyingParty = () => {
 
   return {
     isPocketRides: rp === RelyingParty.pocketrides,
-    isPairBnB: rp === RelyingParty.pairbnb,
+    ispearbnb: rp === RelyingParty.pearbnb,
   };
 };

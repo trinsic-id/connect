@@ -32,7 +32,7 @@ RUN dotnet restore \
 
 COPY ./demoshared ./demoshared/
 COPY ./pearbnb ./pearbnb/
-COPY --from=react-builder /app/react/dist-pairbnb /app/pearbnb/service/wwwroot/
+COPY --from=react-builder /app/react/dist-pearbnb /app/pearbnb/service/wwwroot/
 
 WORKDIR /app/pearbnb/service
 RUN dotnet publish \

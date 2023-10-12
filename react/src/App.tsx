@@ -41,7 +41,7 @@ export const App = () => {
 
   return (
     <div
-      className={`${isPocketRides ? "pocketrides-bg" : "pairbnb-bg"} ${
+      className={`${isPocketRides ? "pocketrides-bg" : "pearbnb-bg"} ${
         isDesktop ? "h-full w-full" : "lock-bg h-screen w-screen"
       } flex  flex-col place-content-center items-center bg-contain text-center`}
     >

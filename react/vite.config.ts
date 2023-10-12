@@ -29,7 +29,7 @@ export default defineConfig({
     outDir:
       process.env.RELYING_PARTY === "pocketrides"
         ? "./dist-pocketrides"
-        : "./dist-pairbnb",
+        : "./dist-pearbnb",
     rollupOptions: {
       output: {
         assetFileNames: (assetInfo) => {

@@ -555,9 +555,9 @@ tsconfig.tsbuildinfo
 /devops/pulumi/Programs/*/Pulumi.Pronghorn.Sandbox.yaml
 
 .DS_Store
-react/dist-pairbnb
+react/dist-pearbnb
 react/dist-pocketrides
 pocketride/service/wwwroot/js/pocketrides.js
 pocketride/service/wwwroot/css/pocketrides.css
-pearbnb/service/wwwroot/js/pairbnb.js
-pearbnb/service/wwwroot/css/pairbnb.css
+pearbnb/service/wwwroot/js/pearbnb.js
+pearbnb/service/wwwroot/css/pearbnb.css
