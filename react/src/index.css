@@ -60,10 +60,10 @@ body {
     lightgray 50% / cover no-repeat;
 }
 
-.pairbnb-bg {
+.pearbnb-bg {
   background:
     linear-gradient(0deg, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.4) 100%),
-    url(/images/pairbnb.jpg),
+    url(/images/pearbnb.jpg),
     lightgray 50% / cover no-repeat;
 }
 

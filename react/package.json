@@ -4,14 +4,14 @@
   "main": "src/main.tsx",
   "scripts": {
     "build-pocketrides": "tsc && RELYING_PARTY='pocketrides' vite build",
-    "build-pairbnb": "tsc && RELYING_PARTY='pairbnb' vite build",
-    "build": "npm run build-pocketrides && npm run build-pairbnb",
+    "build-pearbnb": "tsc && RELYING_PARTY='pearbnb' vite build",
+    "build": "npm run build-pocketrides && npm run build-pearbnb",
     "build:post": "sh ./post-build.sh",
     "build:eslint": "npx eslint src",
     "build:prettier": "prettier src --write",
     "find-unimported": "npx unimported",
-    "start-pocketrides": "RELYING_PARTY='pocketrides' vite --host",
-    "start-pairbnb": "RELYING_PARTY='pairbnb' vite --host"
+    "start-pocketrides": "RELYING_PARTY='pocketrides' concurrently \"vite --host\" \"dotnet run --project ../pocketrides/service/PocketRide.csproj\"",
+    "start-pearbnb": "RELYING_PARTY='pearbnb' concurrently \"vite --host\" \"dotnet run --project ../pearbnb/service/PearBnB.csproj\""
   },
   "dependencies": {
     "@trinsic/trinsic": "^1.11.3-pre.14",
@@ -41,6 +41,7 @@
     "@vitejs/plugin-basic-ssl": "1.0.1",
     "@vitejs/plugin-react": "4.0.4",
     "autoprefixer": "10.4.14",
+    "concurrently": "^8.2.1",
     "dotenv": "16.3.1",
     "eslint": "8.46.0",
     "eslint-plugin-react-hooks": "4.6.0",
