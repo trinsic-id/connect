@@ -1,19 +1,16 @@
 import { capitalize } from "lodash";
 import { useMemo } from "react";
 import { CheckCircle } from "react-feather";
-import { usGetSessionResult } from "../hooks/queries/useGetSessionResult";
+import { VPToken } from "../hooks/queries/useGetSessionResult";
 
-export const Success = ({ clientToken }: { clientToken: string }) => {
-  const { data } = usGetSessionResult(clientToken);
+export const Success = ({ vpToken }: { vpToken: VPToken }) => {
   const credential = useMemo(() => {
-    if (data) {
-      if (Array.isArray(data.verifiableCredential)) {
-        return data.verifiableCredential[0];
-      } else {
-        return data.verifiableCredential;
-      }
+    if (Array.isArray(vpToken.verifiableCredential)) {
+      return vpToken.verifiableCredential[0];
+    } else {
+      return vpToken.verifiableCredential;
     }
-  }, [data]);
+  }, [vpToken]);
 
   const name = useMemo(() => {
     if (credential) {
@@ -23,7 +20,7 @@ export const Success = ({ clientToken }: { clientToken: string }) => {
     }
   }, [credential]);
   return (
-    <div className=" flex h-full w-full place-content-center items-center">
+    <div className="flex h-full w-full place-content-center items-center">
       <div className="flex h-full max-h-[280px] w-full max-w-[380px] flex-col items-center gap-4 rounded-lg bg-white px-2 py-4">
         <div className="pt-16 text-center">
           <CheckCircle className="h-14 w-14 text-success-700" />

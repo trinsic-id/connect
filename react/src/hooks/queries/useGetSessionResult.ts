@@ -79,10 +79,13 @@ const handleGetSessionResult = async (
   return json;
 };
 
-export const usGetSessionResult = (clientToken: string) => {
+export const useGetSessionResult = (
+  clientToken?: string,
+  enabled: boolean = true,
+) => {
   return useQuery(
     ["session-result", clientToken],
-    () => handleGetSessionResult(clientToken),
+    () => handleGetSessionResult(clientToken!),
 
     {
       onSuccess: (data) => {
@@ -94,6 +97,7 @@ export const usGetSessionResult = (clientToken: string) => {
       retry: 5,
       retryDelay: 100,
       refetchOnWindowFocus: false,
+      enabled: !!clientToken && enabled,
     },
   );
 };
