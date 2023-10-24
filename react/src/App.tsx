@@ -3,19 +3,23 @@ import { delay } from "lodash";
 import { useEffect, useState } from "react";
 import Spinner from "react-spinkit";
 import { useToggle } from "react-use";
+import { Error, IDVError } from "./components/Error";
 import { Success } from "./components/Success";
 import { baseUrl } from "./constants/connectUrl";
 import { useMobileDetect } from "./hooks/custom/useDetectMobile";
 import { useWhichRelyingParty } from "./hooks/custom/useWhichRelyingParty";
 import { useCreateSession } from "./hooks/mutations/useCreateSession";
+import { useGetSessionResult } from "./hooks/queries/useGetSessionResult";
 
 export const App = () => {
   const { isPocketRides } = useWhichRelyingParty();
   const { data } = useCreateSession();
-  const [isFinished, toggleFinished] = useToggle(false);
   const [isLoading, toggleLoading] = useToggle(true);
-
+  const [isSuccess, toggleSuccess] = useToggle(false);
+  const [error, SetError] = useState<undefined | any>(undefined);
   const [sdk, setSdk] = useState<ConnectClient | undefined>(undefined);
+
+  const isFinished = isSuccess || !!error;
 
   const { isMobile, isDesktop } = useMobileDetect();
 
@@ -23,9 +27,16 @@ export const App = () => {
     if (data?.clientToken !== undefined && sdk === undefined && !isLoading) {
       const cSdk = new ConnectClient(baseUrl);
       setSdk(cSdk);
-      cSdk.identityVerification(data.clientToken).then((val) => {
-        toggleFinished(true);
-      });
+      cSdk
+        .identityVerification(data.clientToken)
+        .then((val) => {
+          console.log("Success in identity verification", val);
+          toggleSuccess(true);
+        })
+        .catch((reason: IDVError) => {
+          console.error("Error in identity verification", reason);
+          SetError(reason);
+        });
     }
   }, [sdk, data?.clientToken, isLoading]);
 
@@ -38,6 +49,8 @@ export const App = () => {
       }
     }
   }, [data?.clientToken, isLoading]);
+
+  const { data: result } = useGetSessionResult(data?.sessionId, isSuccess);
 
   return (
     <div
@@ -65,23 +78,20 @@ export const App = () => {
       )}
 
       {isMobile && !isFinished && (
-        <>
-          <div className="flex h-full min-h-[600px] w-full place-content-center items-center">
-            {data?.clientToken && !isLoading ? null : (
-              <Spinner
-                fadeIn="none"
-                name="double-bounce"
-                color="white"
-                className={`h-12 w-12 shrink-0`}
-              />
-            )}
-          </div>
-        </>
+        <div className="flex h-full min-h-[600px] w-full place-content-center items-center">
+          {data?.clientToken && !isLoading ? null : (
+            <Spinner
+              fadeIn="none"
+              name="double-bounce"
+              color="white"
+              className={`h-12 w-12 shrink-0`}
+            />
+          )}
+        </div>
       )}
 
-      {isFinished && data?.clientToken && (
-        <Success clientToken={data.sessionId} />
-      )}
+      {!!error && <Error error={error} />}
+      {isSuccess && result && <Success vpToken={result} />}
     </div>
   );
 };
