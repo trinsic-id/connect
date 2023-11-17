@@ -91,7 +91,13 @@ export const App = () => {
       )}
 
       {!!error && <Error error={error} />}
-      {isSuccess && result && <Success vpToken={result} />}
+      {isSuccess && result && (
+        <Success
+          data={
+            Object.values(result.verifications)[0].normalizedGovernmentIdData
+          }
+        />
+      )}
     </div>
   );
 };

@@ -1,24 +1,19 @@
+import { NormalizedGovernmentIdData } from "@trinsic/trinsic";
 import { capitalize } from "lodash";
 import { useMemo } from "react";
 import { CheckCircle } from "react-feather";
-import { VPToken } from "../hooks/queries/useGetSessionResult";
 
-export const Success = ({ vpToken }: { vpToken: VPToken }) => {
-  const credential = useMemo(() => {
-    if (Array.isArray(vpToken.verifiableCredential)) {
-      return vpToken.verifiableCredential[0];
-    } else {
-      return vpToken.verifiableCredential;
-    }
-  }, [vpToken]);
-
+export const Success = ({
+  data,
+}: {
+  data: NormalizedGovernmentIdData | undefined;
+}) => {
   const name = useMemo(() => {
-    if (credential) {
-      return `${
-        capitalize(credential?.credentialSubject.givenName).split(" ")[0]
-      } ${capitalize(credential?.credentialSubject.familyName)}`;
-    }
-  }, [credential]);
+    return `${capitalize(data?.givenName ?? "").split(" ")[0]} ${capitalize(
+      data?.familyName ?? "",
+    )}`;
+  }, [data]);
+
   return (
     <div className="flex h-full w-full place-content-center items-center">
       <div className="flex h-full max-h-[280px] w-full max-w-[380px] flex-col items-center gap-4 rounded-lg bg-white px-2 py-4">

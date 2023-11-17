@@ -1,64 +1,22 @@
+import { Verification } from "@trinsic/trinsic";
 import { useQuery } from "react-query";
-
-const vc = {
-  "@context": [
-    "",
-    {
-      "@vocab": "",
-    },
-  ],
-  id: "",
-  type: [""],
-  credentialSchema: {
-    id: "",
-    type: "",
-  },
-  credentialStatus: {
-    id: "",
-    type: "",
-    revocationListCredential: "",
-    revocationListIndex: "",
-  },
-  credentialSubject: {
-    id: "",
-    city: "",
-    class: "",
-    country: "",
-    dateOfBirth: "",
-    expiryDate: "",
-    familyName: "",
-    givenName: "",
-    issueDate: "",
-    issuer: "",
-    number: "",
-    portrait: "",
-    postalCode: "",
-    signature: "",
-    state: "",
-    streetAddress: "",
-  },
-  issuanceDate: "",
-  issuer: "",
-  proof: {
-    type: "",
-    created: "",
-    nonce: "",
-    proofPurpose: "",
-    proofValue: "",
-    verificationMethod: "",
-  },
-};
 
 export type VPToken = {
   id: string;
   "@context": string[];
   type: string[];
-  verifiableCredential: typeof vc | (typeof vc)[];
 };
+
+interface Session {
+  resultVp: VPToken;
+  verifications: {
+    [key: string]: Verification;
+  };
+}
 
 const handleGetSessionResult = async (
   clientToken: string,
-): Promise<VPToken> => {
+): Promise<Session> => {
   const resp = await fetch(`/api/get-result?clientToken=${clientToken}`, {
     method: "POST",
   });
@@ -72,10 +30,11 @@ const handleGetSessionResult = async (
     throw new Error("Result not available yet");
   }
 
-  const json: VPToken | null | undefined = JSON.parse(text);
+  const json: Session | null | undefined = JSON.parse(text);
   if (!json) {
     throw new Error("Not valid");
   }
+
   return json;
 };
 

@@ -68,7 +68,7 @@ public class SessionController : Controller
         Console.Error.WriteLine(session.Session.ResultVp);
         if (!session.Session.HasResultVp)
             return Ok("no-result-yet");
-        return Ok(session.Session.ResultVp);
+        return Ok(session.Session);
     }
     public class SessionResponse
     {
