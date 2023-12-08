@@ -4,6 +4,7 @@ import {
   OidcClientSettings,
   WebStorageStateStore,
 } from "oidc-client-ts";
+
 export interface MobileDetect {
   isMobile: boolean;
   isDesktop: boolean;
@@ -346,7 +347,7 @@ export class ConnectClient {
   public async identityVerification(clientToken: string): Promise<any> {
     this.showModal(clientToken);
 
-    var result = new Promise((resolve, reject) => {
+    return new Promise((resolve, reject) => {
       window.addEventListener(
         "message",
         (event) => {
@@ -363,7 +364,6 @@ export class ConnectClient {
         false,
       );
     });
-    return result;
   }
 
   processCallback = (response: any) => {};
@@ -384,11 +384,9 @@ export class ConnectClient {
 
     this.popupWindow = this.openPopup(authRequest.url);
 
-    var result = new Promise((resolve, reject) => {
+    return new Promise((resolve, reject) => {
       this.processCallback = resolve;
     });
-
-    return result;
   }
 
   openPopup = (url: string) => {
