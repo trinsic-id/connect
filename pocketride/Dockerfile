@@ -24,17 +24,17 @@ WORKDIR /app
 # Encourage layer caching for dotnet restore
 # https://blog.nimbleways.com/docker-build-caching-for-dotnet-applications-done-right-with-dotnet-subset/
 COPY ./demoshared/*.csproj ./demoshared/
-COPY ./pocketride/service/*.csproj ./pocketride/service/
+COPY ./backend/service/*.csproj ./backend/
 
 RUN dotnet restore \
     --runtime linux-x64 \
-    "/app/pocketride/service/PocketRide.csproj"
+    "/app/backend/service/ConnectBackend.csproj"
 
 COPY ./demoshared ./demoshared/
-COPY ./pocketride ./pocketride/
-COPY --from=react-builder /app/react/dist-pocketrides /app/pocketride/service/wwwroot/
+COPY ./backend ./backend/
+COPY --from=react-builder /app/react/dist-pearbnb /app/pearbnb/service/wwwroot/
 
-WORKDIR /app/pocketride/service
+WORKDIR /app/pearbnb/service
 RUN dotnet publish \
     --configuration Release \
     --output out \
@@ -60,6 +60,6 @@ RUN apt-get update \
     && apt-get clean
 
 WORKDIR /app
-COPY --from=dotnet-builder /app/pocketride/service/out .
+COPY --from=dotnet-builder /app/pearbnb/service/out .
 
-ENTRYPOINT ["./PocketRide", "--environment=Production"]
+ENTRYPOINT ["./PearBnB", "--environment=Production"]

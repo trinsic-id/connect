@@ -63,9 +63,9 @@ public class SessionController : Controller
         
         var trinsic = new TrinsicService(_trinsicClientOptions);
         var session = await trinsic.Connect.GetSessionAsync(new GetSessionRequest() {IdvSessionId = clientToken});
-        Console.Error.WriteLine(session.Session.ToString());
+        await Console.Error.WriteLineAsync(session.Session.ToString());
         Console.Error.WriteLine(session.Session.HasResultVp);
-        Console.Error.WriteLine(session.Session.ResultVp);
+        await Console.Error.WriteLineAsync(session.Session.ResultVp);
         if (!session.Session.HasResultVp)
             return Ok("no-result-yet");
         return Ok(session.Session);

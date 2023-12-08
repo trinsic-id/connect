@@ -24,14 +24,14 @@ WORKDIR /app
 # Encourage layer caching for dotnet restore
 # https://blog.nimbleways.com/docker-build-caching-for-dotnet-applications-done-right-with-dotnet-subset/
 COPY ./demoshared/*.csproj ./demoshared/
-COPY ./pearbnb/service/*.csproj ./pearbnb/service/
+COPY ./backend/service/*.csproj ./backend/
 
 RUN dotnet restore \
     --runtime linux-x64 \
-    "/app/pearbnb/service/PearBnB.csproj"
+    "/app/backend/service/ConnectBackend.csproj"
 
 COPY ./demoshared ./demoshared/
-COPY ./pearbnb ./pearbnb/
+COPY ./backend ./backend/
 COPY --from=react-builder /app/react/dist-pearbnb /app/pearbnb/service/wwwroot/
 
 WORKDIR /app/pearbnb/service
