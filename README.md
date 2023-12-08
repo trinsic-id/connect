@@ -1,2 +1,2 @@
-# connect-demo
+# connect
 Demo of Trinsic Connect

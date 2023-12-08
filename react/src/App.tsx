@@ -1,4 +1,4 @@
-import { ConnectClient } from "@trinsic/trinsic/lib/src/ConnectClient";
+import { ConnectClient } from "@trinsic/trinsic";
 import { delay } from "lodash";
 import { useEffect, useState } from "react";
 import Spinner from "react-spinkit";

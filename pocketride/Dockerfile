@@ -18,7 +18,7 @@ COPY ./react ./react/
 WORKDIR /app/react
 RUN npm run build
 
-FROM mcr.microsoft.com/dotnet/sdk:7.0 AS dotnet-builder
+FROM mcr.microsoft.com/dotnet/sdk:8.0 AS dotnet-builder
 
 WORKDIR /app
 # Encourage layer caching for dotnet restore
