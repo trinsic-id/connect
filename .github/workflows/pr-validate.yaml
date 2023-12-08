@@ -13,7 +13,7 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v1
@@ -29,5 +29,41 @@ jobs:
         run: |
           docker build -t ${{ matrix.service }}:latest -f ./${{ matrix.service }}/Dockerfile .
 
+  typescript-format:
+    strategy:
+      matrix:
+        service: [ "react" ]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '16'
+
+      - name: Install NPM formatting
+        run: npm install prettier prettier-plugin-organize-imports prettier-plugin-tailwindcss
+      - run: npx prettier --version
+      - name: Run Prettier validation
+        run: npx prettier --check ./${{ matrix.service }}
+
+  dotnet-format:
+    strategy:
+      matrix:
+        service: [ "pearbnb", "pocketride" ]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup dotnet
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
+      - name: Run dotnet format validation
+        run: |
+          dotnet restore
+          dotnet format ConnectDemo.sln --verify-no-changes --no-restore
+      
       # TODO - Run any dotnet tests here
       # TODO - Set up Pulumi preview as well
