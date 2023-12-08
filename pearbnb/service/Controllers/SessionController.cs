@@ -56,13 +56,13 @@ public class SessionController : Controller
     [HttpPost("/api/get-result")]
     public async Task<IActionResult> GetResult([FromQuery(Name = "clientToken")] string clientToken)
     {
-        
-        Console.Error.WriteLine("clientToken");        
+
+        Console.Error.WriteLine("clientToken");
 
         Console.Error.WriteLine(clientToken);
-        
+
         var trinsic = new TrinsicService(_trinsicClientOptions);
-        var session = await trinsic.Connect.GetSessionAsync(new GetSessionRequest() {IdvSessionId = clientToken});
+        var session = await trinsic.Connect.GetSessionAsync(new GetSessionRequest() { IdvSessionId = clientToken });
         Console.Error.WriteLine(session.Session.ToString());
         Console.Error.WriteLine(session.Session.HasResultVp);
         Console.Error.WriteLine(session.Session.ResultVp);

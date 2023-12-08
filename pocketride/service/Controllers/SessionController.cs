@@ -51,23 +51,23 @@ public class SessionController : Controller
         string jsonString = JsonSerializer.Serialize(sessionResp);
         return Ok(jsonString);
     }
-    
-    
+
+
     [HttpPost("/api/get-result")]
     public async Task<IActionResult> GetResult([FromQuery(Name = "clientToken")] string clientToken)
     {
         var trinsic = new TrinsicService(_trinsicClientOptions);
-        var session = await trinsic.Connect.GetSessionAsync(new GetSessionRequest() {IdvSessionId = clientToken});
+        var session = await trinsic.Connect.GetSessionAsync(new GetSessionRequest() { IdvSessionId = clientToken });
         if (!session.Session.HasResultVp)
             return Ok("no-result-yet");
         return Ok(session.Session);
     }
-    
-    
+
+
     public class SessionResponse
     {
         public string clientToken { get; set; }
         public string sessionId { get; set; }
     }
-    
+
 }
