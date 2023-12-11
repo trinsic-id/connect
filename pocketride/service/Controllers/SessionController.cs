@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Text.Json;
 using System.Threading.Tasks;
 using DemoShared.Config;
@@ -32,7 +33,7 @@ public class SessionController : Controller
     public async Task<IActionResult> CreateSession()
     {
         var trinsic = new TrinsicService(_trinsicClientOptions);
-        var session = await trinsic.Connect.CreateSessionAsync(new()
+        var request = new CreateSessionRequest()
         {
             Verifications =
             {
@@ -41,7 +42,13 @@ public class SessionController : Controller
                     Type = VerificationType.GovernmentId
                 }
             }
-        });
+        };
+        var query = HttpContext.Request.Query;
+        foreach (var (key, value) in query)
+        {
+            request.DebugInformation.Add(key, value.FirstOrDefault());
+        }
+        var session = await trinsic.Connect.CreateSessionAsync(request);
         var sessionResp = new SessionResponse
         {
             clientToken = session.Session.ClientToken,
