@@ -8,7 +8,7 @@ jobs:
   pr-build:
     strategy:
       matrix:
-        service: [ "pearbnb", "pocketride"]
+        service: ["pearbnb", "pocketride"]
     runs-on: ubuntu-latest
 
     steps:
@@ -30,9 +30,6 @@ jobs:
           docker build -t ${{ matrix.service }}:latest -f ./${{ matrix.service }}/Dockerfile .
 
   typescript-format:
-    strategy:
-      matrix:
-        service: [ "react" ]
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -41,18 +38,19 @@ jobs:
       - name: Install Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '16'
-
-      - name: Install NPM formatting
-        run: npm install prettier prettier-plugin-organize-imports prettier-plugin-tailwindcss
+          node-version: "16"
+      - name: NPM install
+        run: npm ci
+        working-directory: react
       - run: npx prettier --version
       - name: Run Prettier validation
-        run: npx prettier --check ./${{ matrix.service }}
+        run: npx prettier --check .
+        working-directory: react
 
   dotnet-format:
     strategy:
       matrix:
-        service: [ "pearbnb", "pocketride" ]
+        service: ["pearbnb", "pocketride"]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -64,6 +62,6 @@ jobs:
         run: |
           dotnet restore
           dotnet format ConnectDemo.sln --verify-no-changes --no-restore
-      
+
       # TODO - Run any dotnet tests here
       # TODO - Set up Pulumi preview as well

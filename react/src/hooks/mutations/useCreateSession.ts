@@ -1,5 +1,5 @@
 import { useQuery } from "react-query";
-import { useToggle } from "react-use";
+import { useLocation, useToggle } from "react-use";
 
 export interface FakeSessionResponse {
   idvSession?: string | undefined;
@@ -10,8 +10,11 @@ export interface CreateSessionResponse {
   sessionId: string;
 }
 
-const handleCreateSession = async (): Promise<CreateSessionResponse> => {
-  const resp = await fetch(`/api/create-session`, {
+const handleCreateSession = async (
+  queryParameters: string | undefined,
+): Promise<CreateSessionResponse> => {
+  const uri = `/api/create-session` + queryParameters;
+  const resp = await fetch(uri, {
     method: "POST",
   });
 
@@ -25,9 +28,10 @@ const handleCreateSession = async (): Promise<CreateSessionResponse> => {
 
 export const useCreateSession = () => {
   const [hasToken, toggleHasToken] = useToggle(false);
+  const location = useLocation();
   return useQuery(
     ["client-token"],
-    () => handleCreateSession(),
+    () => handleCreateSession(location.search),
 
     {
       onSuccess: () => {
