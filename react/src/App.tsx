@@ -11,6 +11,7 @@ import {useWhichRelyingParty} from "./hooks/custom/useWhichRelyingParty";
 import {useCreateSession} from "./hooks/mutations/useCreateSession";
 import {useGetSessionResult} from "./hooks/queries/useGetSessionResult";
 import {Lock} from "react-feather";
+import pearbnbLogo from "./assets/pearbnb-logo.png";
 
 export const App = () => {
     enum AppStates {
@@ -49,7 +50,7 @@ export const App = () => {
                     SetError(reason);
                 });
         }
-    }, [sdk, data?.clientToken, isLoading]);
+    }, [sdk, data?.clientToken, isLoading, state]);
 
     useEffect(() => {
         if (isLoading) {
@@ -67,7 +68,7 @@ export const App = () => {
         <div
             className={`${isPocketRides ? "pocketrides-bg" : "pearbnb-bg"} ${
                 isDesktop ? "h-full w-full" : "lock-bg h-screen w-screen"
-            } flex  flex-col place-content-center items-center bg-contain text-center`}
+            } flex flex-col place-content-center items-center bg-contain text-center`}
         >
             {!isFinished && data?.clientToken && !isLoading ? null && (
                 <div
@@ -84,11 +85,12 @@ export const App = () => {
             ):null}
 
             {state === AppStates.SIGNUP &&
-                <div className="flex flex-col text-white w-[22rem] absolute top-10  " >
-                    <p className="flex flex-col text-white text-4xl font-semibold text-left mb-2" >
+                <div className="flex flex-col text-white w-[22rem] absolute top-40" >
+                    <img src={pearbnbLogo} className="h-9 w-9 mb-5"></img>
+                    <p className="flex flex-col text-white text-4xl font-semibold text-left mb-3" >
                         PearBnb
                     </p>
-                    <p className="text-2xl font-light text-left mb-9">
+                    <p className="text-2xl font-light text-left mb-7">
                         Host guests at your house, apartment, or condo.
                     </p>
                     <button
@@ -98,10 +100,26 @@ export const App = () => {
                         Become a Host
                     </button>
                     <p className="text-xs font-light mt-5">
-                        By signing up you recognize you’re using a demo from Trinsic and not a real app.
+                        By signing up you recognize you’re using a demo from <a href="https://trinsic.id" className="underline">Trinsic</a> and not a real app.
                     </p>
                 </div>
             }
+            {state === AppStates.START_VERIFYING || state === AppStates.MODAL_OPEN ? (
+                <div className="flex flex-col text-white w-[22rem] absolute top-40 items-center" >
+                    <img src={pearbnbLogo} className="flex h-9 w-9 mb-5"></img>
+                    <p className="text-xl font-light mb-3">
+                        You’re almost ready to host on PearBnb. First we’ll need to verify your identity.
+                    </p>
+                    <button
+                        className="flex w-full flex-row items-center justify-center rounded-full font-medium transition-opacity disabled:opacity-25 bg-[#f43f5e] px-12 py-3 text-base font-light"
+                        onClick={() => setState(AppStates.MODAL_OPEN)}
+                    >
+                        Start verifying
+                    </button>
+                </div>
+            ):null}
+            {state === AppStates.SUCCESS && <></>}
+            {state === AppStates.LANDING && <></>}
 
             {!!error && <Error error={error}/>}
             {isSuccess && result && (
