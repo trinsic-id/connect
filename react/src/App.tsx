@@ -101,11 +101,13 @@ export const App = () => {
             )}
             
             <div
-                className="flex w-full absolute bottom-0 items-center bg-neutral-800 opacity-80 text-center text-white"
+                className="flex w-full absolute bottom-0 items-center justify-center bg-neutral-800 opacity-80"
             >
-                <Lock className="h-14 w-14"></Lock>
-                <div className="w-full font-semibold pb-6 pt-3 text-xs text-center text-white">
-                    Demo by Trinsic
+                <div className="flex w-full gap-1 justify-center">
+                    <Lock className="h-3 w-3 mt-3 text-white"></Lock>
+                    <div className="font-bold pb-5 pt-3 text-xs text-center text-white">
+                        Demo by Trinsic
+                    </div>
                 </div>
             </div>
         </div>
