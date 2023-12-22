@@ -1,6 +1,6 @@
 import {ConnectClient} from "@trinsic/trinsic";
 import {delay} from "lodash";
-import {useContext, useEffect, useState} from "react";
+import {useEffect, useState} from "react";
 import Spinner from "react-spinkit";
 import {useToggle} from "react-use";
 import {Error, IDVError} from "./components/Error";
@@ -10,19 +10,19 @@ import {useMobileDetect} from "./hooks/custom/useDetectMobile";
 import {useWhichRelyingParty} from "./hooks/custom/useWhichRelyingParty";
 import {useCreateSession} from "./hooks/mutations/useCreateSession";
 import {useGetSessionResult} from "./hooks/queries/useGetSessionResult";
-import { DemoPage } from "./components/DemoPage";
-import {AppStates, DemosContext, DemosContextInterface } from "./context/DemosContext";
+import {CheckCircle, Lock} from "react-feather";
 
 export const App = () => {
-    /*
-    const {
-        appState,
-        setAppState,
-    } = useContext<DemosContextInterface | null>(
-        DemosContext,
-    )!;
-    */
-    
+    enum AppStates {
+        SIGNUP,
+        START_VERIFYING,
+        MODAL_OPEN,
+        SUCCESS,
+        LANDING,
+    }
+
+    const [state, setState] = useState<AppStates | undefined>(AppStates.SIGNUP);
+
     const {isPocketRides} = useWhichRelyingParty();
     const {data} = useCreateSession();
     const [isLoading, toggleLoading] = useToggle(true);
@@ -35,7 +35,7 @@ export const App = () => {
     const {isMobile, isDesktop} = useMobileDetect();
 
     useEffect(() => {
-        if (data?.clientToken !== undefined && sdk === undefined && !isLoading) {
+        if (data?.clientToken !== undefined && sdk === undefined && !isLoading && state===AppStates.MODAL_OPEN) {
             const cSdk = new ConnectClient(baseUrl);
             setSdk(cSdk);
             cSdk
@@ -65,37 +65,15 @@ export const App = () => {
 
     return (
         <div
-            className={`flex w-full flex-col items-center
-            ${isDesktop ? "h-full" : ""}
-            ${isMobile ? "relative" : ""}`}
+            className={`${isPocketRides ? "pocketrides-bg" : "pearbnb-bg"} ${
+                isDesktop ? "h-full w-full" : "lock-bg h-screen w-screen"
+            } flex  flex-col place-content-center items-center bg-contain text-center`}
         >
             {!isFinished && (
-                <>
-                    {isDesktop && (
-                        <DemoPage
-                            key="-page"
-                            id="-page"
-                            className={`relative`}
-                            isPocketRides={isPocketRides}
-                            isDesktop={isDesktop}
-                        >
-                            <div className="flex h-[600px] w-[400px] place-content-center items-center">
-                                {data?.clientToken && !isLoading ? null : (
-                                    <Spinner
-                                        fadeIn="none"
-                                        name="double-bounce"
-                                        color="white"
-                                        className={`h-12 w-12 shrink-0`}
-                                    />
-                                )}
-                            </div>
-                        </DemoPage>
-                    )}
-                </>
-            )}
-
-            {isMobile && !isFinished && (
-                <div className="flex h-full min-h-[600px] w-full place-content-center items-center">
+                <div
+                    className={`${isDesktop ? "h-[600px] w-[400px]" : "h-full min-h-[600px] w-full"}
+                     flex place-content-center items-center`}
+                >
                     {data?.clientToken && !isLoading ? null : (
                         <Spinner
                             fadeIn="none"
@@ -107,6 +85,12 @@ export const App = () => {
                 </div>
             )}
 
+            {state===AppStates.SIGNUP &&
+                <div>
+                    
+                </div>
+            }
+
             {!!error && <Error error={error}/>}
             {isSuccess && result && (
                 <Success
@@ -115,6 +99,15 @@ export const App = () => {
                     }
                 />
             )}
+            
+            <div
+                className="flex w-full absolute bottom-0 items-center bg-neutral-800 opacity-80 text-center text-white"
+            >
+                <Lock className="h-14 w-14"></Lock>
+                <div className="w-full font-semibold pb-6 pt-3 text-xs text-center text-white">
+                    Demo by Trinsic
+                </div>
+            </div>
         </div>
     );
 };

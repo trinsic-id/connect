@@ -10,7 +10,7 @@
     "build:eslint": "npx eslint src",
     "build:prettier": "prettier src --write",
     "find-unimported": "npx unimported",
-    "start-pocketrides": "RELYING_PARTY='pocketrides' concurrently \"vite --host\" \"dotnet run --project ../pocketrides/service/PocketRide.csproj\"",
+    "start-pocketrides": "RELYING_PARTY='pocketrides' concurrently \"vite --host\" \"dotnet run --project ../pocketride/service/PocketRide.csproj\"",
     "start-pearbnb": "RELYING_PARTY='pearbnb' concurrently \"vite --host\" \"dotnet run --project ../pearbnb/service/PearBnB.csproj\""
   },
   "dependencies": {
