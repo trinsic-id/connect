@@ -10,7 +10,7 @@ import {useMobileDetect} from "./hooks/custom/useDetectMobile";
 import {useWhichRelyingParty} from "./hooks/custom/useWhichRelyingParty";
 import {useCreateSession} from "./hooks/mutations/useCreateSession";
 import {useGetSessionResult} from "./hooks/queries/useGetSessionResult";
-import {CheckCircle, Lock} from "react-feather";
+import {Lock} from "react-feather";
 
 export const App = () => {
     enum AppStates {
@@ -35,7 +35,7 @@ export const App = () => {
     const {isMobile, isDesktop} = useMobileDetect();
 
     useEffect(() => {
-        if (data?.clientToken !== undefined && sdk === undefined && !isLoading && state===AppStates.MODAL_OPEN) {
+        if (data?.clientToken !== undefined && sdk === undefined && !isLoading && state === AppStates.MODAL_OPEN) {
             const cSdk = new ConnectClient(baseUrl);
             setSdk(cSdk);
             cSdk
@@ -69,25 +69,37 @@ export const App = () => {
                 isDesktop ? "h-full w-full" : "lock-bg h-screen w-screen"
             } flex  flex-col place-content-center items-center bg-contain text-center`}
         >
-            {!isFinished && (
+            {!isFinished && data?.clientToken && !isLoading ? null && (
                 <div
                     className={`${isDesktop ? "h-[600px] w-[400px]" : "h-full min-h-[600px] w-full"}
                      flex place-content-center items-center`}
                 >
-                    {data?.clientToken && !isLoading ? null : (
-                        <Spinner
-                            fadeIn="none"
-                            name="double-bounce"
-                            color="white"
-                            className={`h-12 w-12 shrink-0`}
-                        />
-                    )}
+                    <Spinner
+                        fadeIn="none"
+                        name="double-bounce"
+                        color="white"
+                        className={`h-12 w-12 shrink-0`}
+                    />
                 </div>
-            )}
+            ):null}
 
-            {state===AppStates.SIGNUP &&
-                <div>
-                    
+            {state === AppStates.SIGNUP &&
+                <div className="flex flex-col text-white w-[22rem] absolute top-10  " >
+                    <p className="flex flex-col text-white text-4xl font-semibold text-left mb-2" >
+                        PearBnb
+                    </p>
+                    <p className="text-2xl font-light text-left mb-9">
+                        Host guests at your house, apartment, or condo.
+                    </p>
+                    <button
+                        className="flex flex-row items-center justify-center rounded-full font-medium transition-opacity disabled:opacity-25 bg-[#f43f5e] px-12 py-3 text-base font-light"
+                        onClick={() => setState(AppStates.START_VERIFYING)}
+                    >
+                        Become a Host
+                    </button>
+                    <p className="text-xs font-light mt-5">
+                        By signing up you recognize you’re using a demo from Trinsic and not a real app.
+                    </p>
                 </div>
             }
 
@@ -99,9 +111,9 @@ export const App = () => {
                     }
                 />
             )}
-            
+
             <div
-                className="flex w-full absolute bottom-0 items-center justify-center bg-neutral-800 opacity-80"
+                className="flex w-full absolute bottom-0 items-center justify-center bg-[#343434] opacity-80"
             >
                 <div className="flex w-full gap-1 justify-center">
                     <Lock className="h-3 w-3 mt-3 text-white"></Lock>
