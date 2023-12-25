@@ -10,8 +10,8 @@
     "build:eslint": "npx eslint src",
     "build:prettier": "prettier src --write",
     "find-unimported": "npx unimported",
-    "start-pocketrides": "RELYING_PARTY='pocketrides' concurrently \"vite --host\" \"dotnet run --project ../pocketrides/service/PocketRide.csproj\"",
-    "start-pearbnb": "RELYING_PARTY='pearbnb' concurrently \"vite --host\" \"dotnet run --project ../pearbnb/service/PearBnB.csproj\""
+    "start-pocketrides": "cross-env RELYING_PARTY='pocketrides' concurrently \"vite --host\" \"dotnet run --project ../pocketrides/service/PocketRide.csproj\"",
+    "start-pearbnb": "cross-env RELYING_PARTY='pearbnb' concurrently \"vite --host\" \"dotnet run --project ../pearbnb/service/PearBnB.csproj\""
   },
   "dependencies": {
     "@trinsic/trinsic": "1.13.1-rc1",
@@ -42,6 +42,7 @@
     "@vitejs/plugin-react": "4.0.4",
     "autoprefixer": "10.4.14",
     "concurrently": "^8.2.1",
+    "cross-env": "7.0.3",
     "dotenv": "16.3.1",
     "eslint": "8.46.0",
     "eslint-plugin-react-hooks": "4.6.0",
