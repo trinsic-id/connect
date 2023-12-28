@@ -62,5 +62,4 @@ RUN apt-get update \
 WORKDIR /app
 COPY --from=dotnet-builder /app/pearbnb/service/out .
 
-# TODO - Change the executable?
 ENTRYPOINT ["./PearBnB", "--environment=Production"]

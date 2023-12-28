@@ -62,5 +62,4 @@ RUN apt-get update \
 WORKDIR /app
 COPY --from=dotnet-builder /app/pocketride/service/out .
 
-# TODO - Change the executable?
 ENTRYPOINT ["./PocketRide", "--environment=Production"]

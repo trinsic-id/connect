@@ -1,15 +1,12 @@
-﻿using System;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Text.Json;
 using DemoShared.Config;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Trinsic;
 using Trinsic.Sdk.Options.V1;
 using Trinsic.Services.Connect.V1;
-using System.Text.Json;
-using System.Text.Json.Serialization;
-namespace PearBnB.Controllers;
+
+namespace DemoShared.Controllers;
 
 public class SessionController : Controller
 {
