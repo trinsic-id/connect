@@ -26,10 +26,7 @@ export default defineConfig({
   },
   publicDir: "./public",
   build: {
-    outDir:
-      process.env.RELYING_PARTY === "pocketrides"
-        ? "./dist-pocketrides"
-        : "./dist-pearbnb",
+    outDir: `./dist-${process.env.RELYING_PARTY}`,
     rollupOptions: {
       output: {
         assetFileNames: (assetInfo) => {
