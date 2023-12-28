@@ -4,7 +4,7 @@
     <OutputType>Exe</OutputType>
     <TargetFramework>net8.0</TargetFramework>
     <Nullable>enable</Nullable>
-    <RootNamespace>ConnectDemo</RootNamespace>
+    <RootNamespace>PocketRide</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
@@ -15,16 +15,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\demoshared\DemoShared.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <_ContentIncludedByDefault Remove="Pages\Error.cshtml" />
-    <_ContentIncludedByDefault Remove="Pages\Index.cshtml" />
-    <_ContentIncludedByDefault Remove="Pages\Privacy.cshtml" />
-    <_ContentIncludedByDefault Remove="Pages\Shared\_Layout.cshtml" />
-    <_ContentIncludedByDefault Remove="Pages\Shared\_ValidationScriptsPartial.cshtml" />
-    <_ContentIncludedByDefault Remove="Pages\_ViewImports.cshtml" />
-    <_ContentIncludedByDefault Remove="Pages\_ViewStart.cshtml" />
   </ItemGroup>
 
 </Project>
