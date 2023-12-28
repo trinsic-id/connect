@@ -52,7 +52,7 @@ public class SessionController : Controller
             sessionId = session.Session.Id
         };
 
-        string jsonString = JsonSerializer.Serialize(sessionResp);
+        var jsonString = JsonSerializer.Serialize(sessionResp);
         return Ok(jsonString);
     }
 
