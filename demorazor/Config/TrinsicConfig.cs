@@ -1,4 +1,4 @@
-﻿namespace DemoShared.Config;
+﻿namespace DemoRazor.Config;
 
 public class TrinsicConfig
 {

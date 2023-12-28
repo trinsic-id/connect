@@ -1,15 +1,12 @@
-﻿using System;
-using System.Linq;
-using System.Text.Json;
-using System.Threading.Tasks;
-using DemoShared.Config;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Trinsic;
 using Trinsic.Sdk.Options.V1;
 using Trinsic.Services.Connect.V1;
+using System.Text.Json;
+using DemoRazor.Config;
 
-namespace PocketRide.Controllers;
+namespace Connect.Controllers;
 
 public class SessionController : Controller
 {
@@ -63,14 +60,20 @@ public class SessionController : Controller
     [HttpPost("/api/get-result")]
     public async Task<IActionResult> GetResult([FromQuery(Name = "clientToken")] string clientToken)
     {
+
+        Console.Error.WriteLine("clientToken");
+
+        Console.Error.WriteLine(clientToken);
+
         var trinsic = new TrinsicService(_trinsicClientOptions);
         var session = await trinsic.Connect.GetSessionAsync(new GetSessionRequest() { IdvSessionId = clientToken });
+        Console.Error.WriteLine(session.Session.ToString());
+        Console.Error.WriteLine(session.Session.HasResultVp);
+        Console.Error.WriteLine(session.Session.ResultVp);
         if (!session.Session.HasResultVp)
             return Ok("no-result-yet");
         return Ok(session.Session);
     }
-
-
     public class SessionResponse
     {
         public string clientToken { get; set; }

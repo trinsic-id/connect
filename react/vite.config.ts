@@ -34,9 +34,9 @@ export default defineConfig({
       output: {
         assetFileNames: (assetInfo) => {
           if (assetInfo.name === "index.css")
-            return `css/${process.env.RELYING_PARTY}.css`;
+            return `css/connect.css`;
           if (assetInfo.name === "assets/index.js")
-            return `${process.env.RELYING_PARTY}.js`;
+            return `connect.js`;
           return assetInfo.name ?? "";
         },
         entryFileNames: `js/${process.env.RELYING_PARTY}.js`,

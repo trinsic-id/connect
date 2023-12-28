@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 
-namespace PearBnB.Pages;
+namespace Connect.Pages;
 
 public class IndexModel : PageModel
 {
