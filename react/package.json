@@ -3,14 +3,14 @@
   "private": true,
   "main": "src/main.tsx",
   "scripts": {
-    "build-pocketrides": "tsc && RELYING_PARTY='pocketrides' vite build",
+    "build-pocketride": "tsc && RELYING_PARTY='pocketride' vite build",
     "build-pearbnb": "tsc && RELYING_PARTY='pearbnb' vite build",
-    "build": "npm run build-pocketrides && npm run build-pearbnb",
+    "build": "npm run build-pocketride && npm run build-pearbnb",
     "build:post": "sh ./post-build.sh",
     "build:eslint": "npx eslint src",
     "build:prettier": "prettier src --write",
     "find-unimported": "npx unimported",
-    "start-pocketrides": "RELYING_PARTY='pocketrides' concurrently \"vite --host\" \"dotnet run --project ../pocketrides/service/PocketRide.csproj\"",
+    "start-pocketride": "RELYING_PARTY='pocketride' concurrently \"vite --host\" \"dotnet run --project ../pocketride/service/PocketRide.csproj\"",
     "start-pearbnb": "RELYING_PARTY='pearbnb' concurrently \"vite --host\" \"dotnet run --project ../pearbnb/service/PearBnB.csproj\""
   },
   "dependencies": {

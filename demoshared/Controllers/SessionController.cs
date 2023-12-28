@@ -63,14 +63,14 @@ public class SessionController : Controller
     [HttpPost("/api/get-result")]
     public async Task<IActionResult> GetResult([FromQuery(Name = "clientToken")] string clientToken)
     {
-	    // TODO - Should this be logged?
+        // TODO - Should this be logged?
         Console.Error.WriteLine("clientToken");
 
         Console.Error.WriteLine(clientToken);
 
         var trinsic = new TrinsicService(_trinsicClientOptions);
         var session = await trinsic.Connect.GetSessionAsync(new GetSessionRequest() { IdvSessionId = clientToken });
-		// TODO - Should this be logged?
+        // TODO - Should this be logged?
         Console.Error.WriteLine(session.Session.ToString());
         Console.Error.WriteLine(session.Session.HasResultVp);
         Console.Error.WriteLine(session.Session.ResultVp);
