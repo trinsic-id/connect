@@ -1,12 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System.Text.Json;
+using DemoRazor.Config;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Trinsic;
 using Trinsic.Sdk.Options.V1;
 using Trinsic.Services.Connect.V1;
-using System.Text.Json;
-using DemoRazor.Config;
 
-namespace Connect.Controllers;
+namespace DemoRazor.Controllers;
 
 public class SessionController : Controller
 {
