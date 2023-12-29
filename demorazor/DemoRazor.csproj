@@ -3,28 +3,12 @@
     <PropertyGroup>
         <TargetFramework>net8.0</TargetFramework>
         <Nullable>enable</Nullable>
-        <ImplicitUsings>enable</ImplicitUsings>
     </PropertyGroup>
-
-
-    <ItemGroup>
-        <SupportedPlatform Include="browser"/>
-    </ItemGroup>
 
     <ItemGroup>
         <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="8.0.0"/>
         <PackageReference Include="Trinsic" Version="1.13.1-rc1" />
         <PackageReference Include="Yarp.ReverseProxy" Version="2.0.1" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <AdditionalFiles Include="Pages\Error.cshtml" />
-      <AdditionalFiles Include="Pages\Index.cshtml" />
-      <AdditionalFiles Include="Pages\Privacy.cshtml" />
-      <AdditionalFiles Include="Pages\Shared\_Layout.cshtml" />
-      <AdditionalFiles Include="Pages\Shared\_ValidationScriptsPartial.cshtml" />
-      <AdditionalFiles Include="Pages\_ViewImports.razor" />
-      <AdditionalFiles Include="Pages\_ViewStart.cshtml" />
     </ItemGroup>
 
 </Project>
