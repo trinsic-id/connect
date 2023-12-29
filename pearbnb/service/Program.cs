@@ -9,10 +9,8 @@ IConfiguration configuration = builder.Configuration;
 IHostEnvironment hostEnvironment = builder.Environment;
 // Add services to the container.
 builder.Services.AddRazorPages();
+builder.Services.AddControllersWithViews();
 builder.Services.AddReverseProxy().LoadFromConfig(configuration.GetSection("SpaProxy"));
-
-// Add services to the container.
-builder.Services.AddRazorPages();
 
 var app = builder.Build();
 
@@ -31,11 +29,8 @@ app.MapControllers();
 if (!hostEnvironment.IsDevelopment())
 {
     app.MapRazorPages();
-}
-
-
-if (hostEnvironment.IsDevelopment())
-{
+} else {
+    app.MapRazorPages();
     app.MapReverseProxy();
 }
 app.Run();

@@ -31,11 +31,7 @@ app.MapControllers();
 if (!hostEnvironment.IsDevelopment())
 {
     app.MapRazorPages();
-}
-
-
-if (hostEnvironment.IsDevelopment())
-{
+} else {
     app.MapReverseProxy();
 }
 
