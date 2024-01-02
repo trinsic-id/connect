@@ -30,7 +30,6 @@ if (!hostEnvironment.IsDevelopment())
 {
     app.MapRazorPages();
 } else {
-    app.MapRazorPages();
     app.MapReverseProxy();
 }
 app.Run();
