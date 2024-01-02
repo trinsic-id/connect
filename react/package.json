@@ -8,10 +8,11 @@
     "build": "npm run build-pocketrides && npm run build-pearbnb",
     "build:post": "sh ./post-build.sh",
     "build:eslint": "npx eslint src",
-    "build:prettier": "prettier src --write",
+    "build:prettier": "prettier --write .",
     "find-unimported": "npx unimported",
     "start-pocketrides": "cross-env RELYING_PARTY='pocketrides' concurrently \"vite --host\" \"dotnet run --project ../pocketrides/service/PocketRide.csproj\"",
-    "start-pearbnb": "cross-env RELYING_PARTY='pearbnb' concurrently \"vite --host\" \"dotnet run --project ../pearbnb/service/PearBnB.csproj\""
+    "start-pearbnb": "cross-env RELYING_PARTY='pearbnb' concurrently \"vite --host\" \"dotnet run --project ../pearbnb/service/PearBnB.csproj\"",
+    "start-pearbnb2": "cross-env RELYING_PARTY='pearbnb' vite --host"
   },
   "dependencies": {
     "@trinsic/trinsic": "1.13.1-rc1",

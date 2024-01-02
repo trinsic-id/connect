@@ -23,14 +23,14 @@ FROM mcr.microsoft.com/dotnet/sdk:8.0 AS dotnet-builder
 WORKDIR /app
 # Encourage layer caching for dotnet restore
 # https://blog.nimbleways.com/docker-build-caching-for-dotnet-applications-done-right-with-dotnet-subset/
-COPY ./demoshared/*.csproj ./demoshared/
+COPY ./demorazor/*.csproj ./demorazor/
 COPY ./pocketride/service/*.csproj ./pocketride/service/
 
 RUN dotnet restore \
     --runtime linux-x64 \
     "/app/pocketride/service/PocketRide.csproj"
 
-COPY ./demoshared ./demoshared/
+COPY ./demorazor ./demorazor/
 COPY ./pocketride ./pocketride/
 COPY --from=react-builder /app/react/dist-pocketrides /app/pocketride/service/wwwroot/
 

@@ -8,7 +8,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PearBnB", "pearbnb\service\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PocketRide", "pocketride\service\PocketRide.csproj", "{75802762-D3E2-4E76-9883-FB5B4EE90416}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DemoShared", "demoshared\DemoShared.csproj", "{8FED8CB0-CF8B-469E-8A10-761731CB4588}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DemoRazor", "demorazor\DemoRazor.csproj", "{93D29D72-DF28-4FD3-B0DA-B60DECD593B2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -28,10 +28,10 @@ Global
 		{75802762-D3E2-4E76-9883-FB5B4EE90416}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{75802762-D3E2-4E76-9883-FB5B4EE90416}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{75802762-D3E2-4E76-9883-FB5B4EE90416}.Release|Any CPU.Build.0 = Release|Any CPU
-		{8FED8CB0-CF8B-469E-8A10-761731CB4588}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8FED8CB0-CF8B-469E-8A10-761731CB4588}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8FED8CB0-CF8B-469E-8A10-761731CB4588}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8FED8CB0-CF8B-469E-8A10-761731CB4588}.Release|Any CPU.Build.0 = Release|Any CPU
+		{93D29D72-DF28-4FD3-B0DA-B60DECD593B2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{93D29D72-DF28-4FD3-B0DA-B60DECD593B2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{93D29D72-DF28-4FD3-B0DA-B60DECD593B2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{93D29D72-DF28-4FD3-B0DA-B60DECD593B2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{8F10C77B-9FCB-42B7-9873-4F4E72E8ED97} = {564E58CE-8C28-4C83-B5D3-36B6EF9DE189}

@@ -14,7 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\demoshared\DemoShared.csproj" />
+    <ProjectReference Include="..\..\demorazor\DemoRazor.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 
-namespace PocketRide.Pages;
+namespace DemoRazor.Pages;
 
 public class PrivacyModel : PageModel
 {

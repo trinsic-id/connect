@@ -33,10 +33,8 @@ export default defineConfig({
     rollupOptions: {
       output: {
         assetFileNames: (assetInfo) => {
-          if (assetInfo.name === "index.css")
-            return `css/${process.env.RELYING_PARTY}.css`;
-          if (assetInfo.name === "assets/index.js")
-            return `${process.env.RELYING_PARTY}.js`;
+          if (assetInfo.name === "index.css") return `css/connect.css`;
+          if (assetInfo.name === "assets/index.js") return `connect.js`;
           return assetInfo.name ?? "";
         },
         entryFileNames: `js/${process.env.RELYING_PARTY}.js`,
